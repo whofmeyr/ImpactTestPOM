@@ -1,0 +1,66 @@
+package pages;
+
+import org.openqa.selenium.By;
+
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.WebElement;
+import test.TestImpactDemo;
+
+public class ImpactDashboardPage {
+
+    WebDriver driver;
+
+    By edit = By.id("dashSettings");
+
+    By widget = By.id("uitk_ext_1405");
+
+    WebElement theWidget;
+    Class<? extends WebElement> widgetClass;
+    String widgetClassString;
+    String plusClassString = "fa fa-lg fa-plus";
+    String minusClassString = "fa fa-lg fa-minus";
+
+    public ImpactDashboardPage(WebDriver driver){
+
+        this.driver = driver;
+
+    }
+
+
+    //Click on edit button
+
+    public void clickEdit(){
+
+        driver.findElement(edit).click();
+
+    }
+
+    //Get the title of Login Page
+
+    public String getDashboardTitle(){
+
+        return    driver.getTitle();
+
+    }
+
+    // find the widget we want
+    public boolean findWidget() {
+        theWidget = driver.findElement(widget);
+       return theWidget != null;
+    }
+
+    // is the button a plus (+)
+    public boolean isButtonPlus() {
+        widgetClass = theWidget.getClass();
+        widgetClassString = widgetClass.getName();
+        return     widgetClassString == plusClassString;
+    }
+
+    // is the button a mins(-)
+    public boolean isButtonMinus() {
+        widgetClass = theWidget.getClass();
+        widgetClassString = widgetClass.getName();
+        return     widgetClassString == minusClassString;
+    }
+}
